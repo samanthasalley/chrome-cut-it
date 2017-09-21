@@ -1,0 +1,45 @@
+.container-fluid {
+	height: 450px;
+	background-color: lightgray;
+}
+
+.media-container {
+	height: 340px;
+	border: 5px solid purple;
+	box-shadow: 0 0 10px darkgray;
+	overflow-y: scroll;
+}
+
+.insta-post, .reddit-listing {
+	margin: 10px 0;
+}
+
+.reddit-link {
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+}
+.reddit-link:hover {
+	text-decoration: none;
+	color: purple;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  background-color: darkgray;
+  top: 430px;
+  left: 0;
+}
+
+.open {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  background-color: darkgray;
+  top: 0;
+  left: 0;
+}
