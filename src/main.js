@@ -4,10 +4,49 @@
 // ======================== //
 // ======================== //
 
-// hide 'open' element on load
+// hide 'open' element on load and show/hide on clicks
 $('#open').hide();
-$('#footer').on('click',() => $('#open').show());
+$('#footer').on('click',() => $('#open').delay(150).fadeIn());
 $('#open').on('click',() => $('#open').hide());
+
+
+// ======================== //
+// ======================== //
+// 					TWITTER 				//
+// ======================== //
+// ======================== //
+// TWITTER AUTH BEARER TOKEN ==> {"token_type": "bearer", "access_token":"AAAAAAAAAAAAAAAAAAAAACCj2QAAAAAAZ8LqcEqMiGeuQtC2W0Xu4Yli0%2Bg%3DvQ94fsGfbyireYXzLxWxuaIDAWymff8dOXKUNawfbaRjxcENOw"}
+		// Base64 version ==> QUFBQUFBQUFBQUFBQUFBQUFBQUFBQ0NqMlFBQUFBQUFaOExxY0VxTWlHZXVRdEMyVzBYdTRZbGkwJTJCZyUzRHZROTRmc0dmYnlpcmVZWHpMeFd4dWFJREFXeW1mZjhkT1hLVU5hd2ZiYVJqeGNFTk93
+const appendTweet = (tweet) => {
+	
+}
+
+const getTwitterFeed = () => {
+	let today = new Date();
+	const params = {
+		callback:'callback',
+		oauth_consumer_key:'GbRk5qVHQY5vYiwbw9M0tGaUd',
+		oauth_token:'AAAAAAAAAAAAAAAAAAAAACCj2QAAAAAAZ8LqcEqMiGeuQtC2W0Xu4Yli0%2Bg%3DvQ94fsGfbyireYXzLxWxuaIDAWymff8dOXKUNawfbaRjxcENOw',
+		oauth_nonce:'zmTfrI',
+		oauth_timestamp:Math.round(today.getTime()/1000),
+		oauth_signature:'fRQVC6XtoNQQjyNQJ4Uy2pye0r8=',
+		oauth_signature_method:'HMAC-SHA1',
+		oauth_version:'1.0'
+	};
+	$.ajax({
+    type: 'GET',
+    accept:'*/*',
+    contentType:'application/x-www-form-urlencoded',
+    cache:true,
+    url: 'https://api.twitter.com/1.1/search/tweets.json?q=trending&callback=' + params.callback + '&oauth_consumer_key=' + params.oauth_consumer_key + '&oauth_token=' + params.oauth_token + '&oauth_signature_method=' + params.oauth_signature_method + '&oauth_timestamp=' + params.oauth_timestamp + '&oauth_nonce=' + params.oauth_nonce + '&oauth_version=' + params.oauth_version,
+    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer AAAAAAAAAAAAAAAAAAAAACCj2QAAAAAAZ8LqcEqMiGeuQtC2W0Xu4Yli0%2Bg%3DvQ94fsGfbyireYXzLxWxuaIDAWymff8dOXKUNawfbaRjxcENOw');},
+    dataType:'jsonp'
+	}).done(function(tweets) { 
+    console.log('tweets', tweets);
+	});
+}
+
+getTwitterFeed();
 
 
 
@@ -21,21 +60,32 @@ $('#open').on('click',() => $('#open').hide());
 // GET user's feed from Insta API
 // loop through each feed item
 	// append most recent 5 feed items to instagram div id
+const appendInstaPost = (post) => {
+	let postURL = post.images.thumbnail.url;
+	let postCaption = post.caption.text;
+	let postLikes = post.likes.count;
+	$('#instagram').prepend('<div class="row insta-post"><div class="col-sm-4"><img class="insta-photo" src="' + postURL + '" /></div><div class="col-sm-8"><div class="insta-post-info"><p class="insta-likes">' + postLikes + '</p><p class="insta-caption">' + postCaption + '</p></div></div></div>');
+}
 
-$.ajax({
+const getInstaFeed = () => {
+	$.ajax({
     type: 'GET',
     url: 'https://api.instagram.com/v1/users/self/media/recent/?count=5&access_token=3548586454.ddee154.c1e73d30b71a496183aaeb90b74b9b6b',
     dataType:'jsonp'
 	}).done(function(response) { 
     const feed = response.data;
+    const existingFeed = $('.insta-post');
+    if(existingFeed) $('.insta-post').remove();
 		for(let i = 0; i < feed.length; i++){
-			let postURL = feed[i].images.thumbnail.url;
-			let postCaption = feed[i].caption.text;
-			let postLikes = feed[i].likes.count;
-			$('#instagram').prepend('<div class="row insta-post"><div class="col-sm-4"><img class="insta-photo" src="' + postURL + '" /></div><div class="col-sm-8"><div class="insta-post-info"><p class="insta-likes">' + postLikes + '</p><p class="insta-caption">' + postCaption + '</p></div></div></div>');
+			appendInstaPost(feed[i]);
 		}
 	});
+}
 
+// Initialize Insta Feed
+getInstaFeed();
+// Refresh feed every 5 secs
+setInterval(() => getInstaFeed(), 5000);
 
 
 // ======================== //
