@@ -1,3 +1,13 @@
+// ======================== //
+// ======================== //
+// 					GENERAL 				//
+// ======================== //
+// ======================== //
+
+// hide 'open' element on load
+$('#open').hide();
+$('#footer').on('click',() => $('#open').show());
+$('#open').on('click',() => $('#open').hide());
 
 
 
@@ -22,7 +32,7 @@ $.ajax({
 			let postURL = feed[i].images.thumbnail.url;
 			let postCaption = feed[i].caption.text;
 			let postLikes = feed[i].likes.count;
-			$('#instagram').prepend('<div class="post"><img src="' + postURL + '" /><div class="photo-info">LIKES: <span class="likes">' + postLikes + '</span><br>CAPTION: <span class="caption">' + postCaption + '</span></div></div>');
+			$('#instagram').prepend('<div class="row insta-post"><div class="col-sm-4"><img class="insta-photo" src="' + postURL + '" /></div><div class="col-sm-8"><div class="insta-post-info"><p class="insta-likes">' + postLikes + '</p><p class="insta-caption">' + postCaption + '</p></div></div></div>');
 		}
 	});
 
@@ -35,14 +45,14 @@ $.ajax({
 // ======================== //
 
 const appendListing = (listing) => {
-	$('#reddit').prepend('<p class=""><a href="' + listing.url + '" target="_blank">' + listing.title + '</a></p>');
+	$('#reddit').prepend('<div class="row reddit-listing"><div class="col-md-12"><a class="reddit-link" href="' + listing.url + '" target="_blank">' + listing.title + '</a></div></div>');
 }
 
-const lessThan5 = (listing) => {
+const lessThan20 = (listing) => {
 	// check how many p elements are inside #reddit
 	let numArticles = $('#reddit p').length;
 	// if 5 already there, remove last one
-	if(numArticles === 5){
+	if(numArticles === 20){
 		$('#reddit p:last-child').remove();
 	}
 	// then append new one
@@ -60,7 +70,6 @@ let subredditChannel = pusher.subscribe("askreddit");
 // Listen for new stories
 subredditChannel.bind("new-listing", function(listing) {
   // Append new postings to #reddit
-  console.log('reddit listing', listing);
-  lessThan5(listing);
+  lessThan20(listing);
 });
 
