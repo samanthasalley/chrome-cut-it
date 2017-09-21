@@ -1,12 +1,12 @@
 .container-fluid {
-	height: 450px;
-	background-color: lightgray;
+	height: 500px;
+	background-color: white;
 }
 
 .media-container {
 	height: 340px;
-	border: 5px solid purple;
-	box-shadow: 0 0 10px darkgray;
+	border: .5px solid #C4C4C4;
+	box-shadow: 0 0 10px #C4C4C4;
 	overflow-y: scroll;
 }
 
@@ -16,12 +16,12 @@
 
 .reddit-link {
 	text-decoration: none;
-	color: red;
+	color: #bd0b22;
 	font-weight: bold;
 }
 .reddit-link:hover {
 	text-decoration: none;
-	color: purple;
+	color: #4d0a72;
 }
 
 .footer {
@@ -29,8 +29,8 @@
   width: 100%;
   height: 20px;
   line-height: 20px;
-  background-color: darkgray;
-  top: 430px;
+  background-color: white;
+  top: 470px;
   left: 0;
 }
 
@@ -39,7 +39,23 @@
   width: 100%;
   height: 20px;
   line-height: 20px;
-  background-color: darkgray;
+  background-color: white;
   top: 0;
   left: 0;
+}
+
+.logo {
+  height: 200px; 
+  width: 200px;
+  margin-left: 500px ;
+}
+
+img.icon {
+  background: none;
+  border: none;
+}
+
+button {
+  background: transparent;
+  border: none;
 }

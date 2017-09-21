@@ -1,6 +1,6 @@
 // ======================== //
 // ======================== //
-// 					GENERAL 				//
+// 			GENERAL 		//
 // ======================== //
 // ======================== //
 
@@ -9,6 +9,8 @@ $('#open').hide();
 $('#footer').on('click',() => $('#open').delay(150).fadeIn());
 $('#open').on('click',() => $('#open').hide());
 
+// $('#collapseMe').prepend('<img class = "down" src = "/>');
+// $('#collapseMe').prepend('<img class = "logo" src = "assets/Logo.png"/>');
 
 // ======================== //
 // ======================== //
@@ -50,10 +52,13 @@ getTwitterFeed();
 
 
 
+$('#gram').prepend('<img class = "logo" src = "assets/Insta.png" style = "height: 150px; width: 300px; margin-left: 150px"/>');
+$('#dit').prepend('<img class = "logo" src = "assets/reddit.png" style = "height: 150px; width: 300px; margin-left: 150px"/>');
+
 
 // ======================== //
 // ======================== //
-// 				INSTAGRAM 				//
+// 	       INSTAGRAM 	    //
 // ======================== //
 // ======================== //
 // INSTAGRAM AUTH ==> 3548586454.ddee154.c1e73d30b71a496183aaeb90b74b9b6b
@@ -90,7 +95,7 @@ setInterval(() => getInstaFeed(), 5000);
 
 // ======================== //
 // ======================== //
-// 					REDDIT 					//
+// 			REDDIT 			//
 // ======================== //
 // ======================== //
 
