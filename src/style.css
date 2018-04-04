@@ -29,7 +29,6 @@
   width: 100%;
   height: 20px;
   line-height: 20px;
-  background-color: white;
   top: 470px;
   left: 0;
 }
@@ -37,17 +36,20 @@
 .open {
   position: absolute;
   width: 100%;
-  height: 20px;
-  line-height: 20px;
-  background-color: white;
+  height: 90px;
+  line-height: 90px;
+  background: #bd0b22;
   top: 0;
   left: 0;
+}
+
+.logo-container {
+  text-align: center;
 }
 
 .logo {
   height: 200px; 
   width: 200px;
-  margin-left: 500px ;
 }
 
 img.icon {
@@ -58,4 +60,5 @@ img.icon {
 button {
   background: transparent;
   border: none;
+  outline:none;
 }
